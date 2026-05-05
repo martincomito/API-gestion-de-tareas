@@ -161,6 +161,33 @@ curl -X DELETE http://127.0.0.1:5001/tareas/1 -u usuario123:1234
 ```
 
 ---
+## Pruebas:  
+### Menú principal:
+<img width="576" height="278" alt="image" src="https://github.com/user-attachments/assets/d4b20835-cc69-4cbf-a804-2a214aa35895" />
+
+### Registro de usuario:  
+<img width="560" height="335" alt="image" src="https://github.com/user-attachments/assets/ad19cc04-8076-4c3d-b7d7-d65a65ad399e" />
+
+### Inicio de sesión (usuario ya registrado):  
+<img width="581" height="350" alt="image" src="https://github.com/user-attachments/assets/4ead0708-eb71-49c7-a5d4-0955ffa7db5f" />
+
+### Inicio de sesión (usuario no registrado):  
+<img width="601" height="325" alt="image" src="https://github.com/user-attachments/assets/932dad8a-8103-4389-92f4-700a43ecbfa4" />
+
+### Ver mis tareas (no registrado):
+<img width="511" height="260" alt="image" src="https://github.com/user-attachments/assets/796a1b4f-3d41-4fea-a798-616f28ce647b" />
+
+### Ver mis tareas (registrado):
+<img width="624" height="321" alt="image" src="https://github.com/user-attachments/assets/ab3d2910-b965-4447-86e2-f77753dc7583" />
+
+### Cerrar sesión:  
+<img width="606" height="284" alt="image" src="https://github.com/user-attachments/assets/c13cf7f0-3e84-47e7-84fd-9af8b341cf6e" />
+
+### Salir:  
+<img width="603" height="228" alt="image" src="https://github.com/user-attachments/assets/0cbe9a1f-e1a7-4906-a650-9f7bb5ebe98c" />
+
+
+---
 
 ## Respuestas Conceptuales
 
