@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Gestión de Tareas — PFO 2</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f5f7fa;
+        color: #2c3e50;
+        line-height: 1.65;
+      }
+
+      header {
+        background: linear-gradient(135deg, #2c3e50, #3498db);
+        color: white;
+        padding: 48px 24px 40px;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      header p {
+        font-size: 1.05rem;
+        opacity: 0.85;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 0.8rem;
+        margin: 6px 4px 0;
+      }
+
+      main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 20px 60px;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 6px;
+        margin: 40px 0 18px;
+      }
+
+      h3 {
+        font-size: 1rem;
+        margin: 20px 0 8px;
+        color: #2980b9;
+      }
+
+      p {
+        margin-bottom: 12px;
+      }
+
+      .cards {
+        display: grid;
+        /* grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); */
+        gap: 16px;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+      .card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        text-align: left;
+      }
+      .card strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .card span {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .endpoints {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .endpoint {
+        background: white;
+        border-radius: 10px;
+        padding: 18px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .method {
+        font-weight: bold;
+        font-size: 0.78rem;
+        border-radius: 6px;
+        padding: 4px 10px;
+        min-width: 62px;
+        text-align: center;
+        margin-top: 2px;
+        flex-shrink: 0;
+      }
+      .get {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .post {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .delete {
+        background: #fce4ec;
+        color: #b71c1c;
+      }
+
+      .endpoint-info strong {
+        display: block;
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+      .endpoint-info p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .lock {
+        font-size: 0.75rem;
+        color: #888;
+        margin-left: 8px;
+      }
+
+      pre {
+        background: #1e2a38;
+        color: #a8d8ea;
+        border-radius: 8px;
+        padding: 16px 20px;
+        overflow-x: auto;
+        font-size: 0.85rem;
+        margin: 10px 0 18px;
+      }
+
+      .conceptual {
+        background: white;
+        border-radius: 10px;
+        padding: 24px 24px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+        margin-bottom: 20px;
+      }
+      .conceptual h3 {
+        margin-top: 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 24px;
+        font-size: 0.85rem;
+        color: #999;
+      }
+      a {
+        color: #3498db;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>API Gestión de Tareas</h1>
+    </header>
+
+    <main>
+      <h2>Características</h2>
+      <div class="cards">
+        <div class="card">
+          <strong>Autenticación</strong>
+          <span>HTTP Basic Auth con contraseñas hasheadas</span>
+        </div>
+        <div class="card">
+          <strong>Persistencia</strong>
+          <span>Base de datos SQLite sin configuración extra</span>
+        </div>
+        <div class="card">
+          <strong>Gestión de tareas</strong>
+          <span>Crear, listar y eliminar tareas por usuario</span>
+        </div>
+        <div class="card">
+          <strong>Cliente consola</strong>
+          <span>Menú interactivo para usar la API</span>
+        </div>
+      </div>
+
+      <!-- Respuestas conceptuales -->
+      <h2>Respuestas Conceptuales</h2>
+
+      <div class="conceptual">
+        <h3>¿Por qué hashear contraseñas?</h3>
+        <p>
+          Almacenar contraseñas en texto plano es un riesgo grave, porque si la
+          base de datos es comprometida, todas las contraseñas quedan expuestas
+          de inmediato. El hashing convierte la contraseña en una cadena
+          irreversible. Así, aunque alguien acceda a la base de datos, no puede
+          recuperar la contraseña original.
+        </p>
+      </div>
+
+      <div class="conceptual">
+        <h3>Ventajas de usar SQLite en este proyecto</h3>
+        <p>
+          <strong>Sin servidor:</strong> SQLite es una biblioteca embebida, que
+          no requiere instalar ni configurar un motor de base de datos separado.
+        </p>
+        <p>
+          <strong>Archivo único:</strong> toda la base de datos es un solo
+          archivo (<code>tareas.db</code>), fácil de mover, respaldar o
+          eliminar.
+        </p>
+        <p>
+          <strong>Incluido en Python:</strong> el módulo
+          <code>sqlite3</code> viene en la biblioteca estándar, sin dependencias
+          adicionales.
+        </p>
+        <p>
+          <strong>Ideal para proyectos pequeños:</strong> tiene soporte completo
+          de SQL, transacciones y claves foráneas, más que suficiente para este
+          caso de uso.
+        </p>
+      </div>
+    </main>
+  </body>
+</html>
